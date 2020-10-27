@@ -3,18 +3,19 @@ package com.lee;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class TowSum {
 
 
     @Test
-    public void alu() {
+    public void test() {
         int[] nums = {3, 3, 6};
-        int[] result = twoSumL(nums, 6);
+        int[] result = afei(nums, 6);
         System.out.println(Arrays.toString(result));
     }
 
-    public int[] twoSumL(int[] nums, int target) {
+    public int[] alu(int[] nums, int target) {
         int[] result = new int[2];
         for (int i = 0; i < nums.length; i++) {
             int another = target - nums[i];
@@ -27,4 +28,21 @@ public class TowSum {
         }
         return result;
     }
+
+    public int[] afei(int[] nums, int target){
+        HashMap<Integer,Integer> map=new HashMap<Integer, Integer>();
+        int[] chars=new int[2];
+        for(int i=0;i<nums.length;i++){
+            int diff=target-nums[i];
+            if(map.get(diff)!=null){
+                chars[0]=map.get(diff);
+                chars[1]=i;
+                return chars;
+            }
+            map.put(nums[i],i);
+        }
+        return chars;
+    }
+
+
 }
